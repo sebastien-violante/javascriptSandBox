@@ -1,1 +1,1 @@
-Bonjour, je suis le résultat de votre requête Ajax !
+Bonjour, je suis le texte écrit dans le fichier texte.txt
