@@ -32,7 +32,20 @@ document.getElementById("fetchLoadData").addEventListener('click', function(){
 let form = document.getElementById('form');
 function scrabbleValueCalculate(event) {
     event.preventDefault();
-    let word = new FormData(form);
-    console.log(word);
+    const formData = new FormData(form);
+    fetch('controller.php', {
+        method: 'post',
+        body: 'myworld',
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+         },
+    })
+    .then(response => { 
+        return response.text();
+    })
+    .then(data => {
+        console.log(data);
+    })
 }
+
 document.getElementById("calculate").addEventListener('click', scrabbleValueCalculate, false);
