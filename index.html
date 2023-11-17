@@ -11,23 +11,36 @@
 </head>
 <body>
     <div class="py-3">
-        <h1 class="mb-5">Des requêtes AJAX</h1>
-        <h2>Récupération de données à partir d'un fichier</h2>
+        <h1 class="mb-5 text-center">Des requêtes AJAX</h1>
+        <hr>
+        <h2 class="text-center">Méthode GET</h2>
+        <p class="text-center">Les deux requêtes ci-dessous récupèrent le contenu du fichier texte.txt et l'affichent dans la zone encadrée</p>
             <div class="flex">
-                <div class="m-3 border border-primary">
+                <div class="m-3">
                     <h3>Requête xmlHttpRequest</h3>
-                    <button id="xmlLoadData" class="btn btn-primary">Charger les donner</button>
+                    <button id="xmlLoadData" class="btn btn-primary">Charger les données</button>
                     <div id="xmlResult" class="divResult"></div>
                 </div>
                 <div class="m-3">
                     <h3>Requête fetch</h3>
-                    <button id="fetchLoadData" class="btn btn-primary">Charger les donner</button>
+                    <button id="fetchLoadData" class="btn btn-primary">Charger les données</button>
                     <div id="fetchResult" class="divResult"></div>
                 </div>
             </div>
+        <hr>
+        <h2 class="text-center">Méthode POST</h2>
+        <p class="text-center">La requête récupère le mot saisi dans le formulaire et détermine sa valeur au Scrabble (sans cases particulières)</p>
+        <div class="flex m-3"></div>
+            <form id="form" class="flex" method="POST" action="controler.php">
+                <label for="wordInput">Saisissez un mot :</label>
+                <input type="text" id="wordInput" name="wordInput" />
+                <input type="submit" id="calculate" value="Calculer" class="btn btn-primary">
+            </form>
+            <div id="scrabbleValue" class="divResult"></div>
+        </div>
     </div>
     
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
 </body>
 </html>

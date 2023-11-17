@@ -9,7 +9,7 @@ document.getElementById("xmlLoadData").addEventListener('click', function(){
             }
         }
     }
-    xhr.open('GET', './texte.txt', true);
+    xhr.open('GET', 'texte.txt', true);
     xhr.send();
 });
 
@@ -28,3 +28,11 @@ document.getElementById("fetchLoadData").addEventListener('click', function(){
         console.error('Erreur lors de la requête fetch :', error)
     });
 });
+
+let form = document.getElementById('form');
+function scrabbleValueCalculate(event) {
+    event.preventDefault();
+    let word = new FormData(form);
+    console.log(word);
+}
+document.getElementById("calculate").addEventListener('click', scrabbleValueCalculate, false);
