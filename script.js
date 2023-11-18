@@ -49,3 +49,33 @@ function scrabbleValueCalculate(event) {
 }
 
 document.getElementById("calculate").addEventListener('click', scrabbleValueCalculate, false);
+
+
+let overDivs = document.getElementsByClassName('col-sm');
+console.log(overDivs);
+for(let overDiv of overDivs) {
+    overDiv.addEventListener('mouseenter', function(event) {
+        event.target.style.backgroundColor = "lightgreen";
+        setTimeout(function () {
+            event.target.style.backgroundColor = "";
+          }, 300);
+    });
+}
+
+
+document.getElementById('itemAdd').addEventListener('click', function(event) {
+    event.preventDefault();
+    let newLi = document.createElement('li');
+    newLi.className = 'list-group-item';
+    newLi.textContent = document.getElementById('item').value;
+    let ul = document.getElementById('items');
+    ul.append(newLi);
+    document.getElementById('item').value ="";
+
+
+    let items = document.getElementsByClassName('list-group-item');
+    for(let item of items) {
+       
+
+};
+})
