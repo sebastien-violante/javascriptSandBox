@@ -1,3 +1,4 @@
+/* REQUETE XML */
 document.getElementById("xmlLoadData").addEventListener('click', function(){
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -13,6 +14,8 @@ document.getElementById("xmlLoadData").addEventListener('click', function(){
     xhr.send();
 });
 
+
+/* REQUETE FETCH  */
 document.getElementById("fetchLoadData").addEventListener('click', function(){
     fetch("texte.txt")
     .then(response => {
@@ -29,16 +32,15 @@ document.getElementById("fetchLoadData").addEventListener('click', function(){
     });
 });
 
+
+/* METHODE POST */
 let form = document.getElementById('form');
 function scrabbleValueCalculate(event) {
     event.preventDefault();
     const formData = new FormData(form);
     fetch('controller.php', {
         method: 'post',
-        body: 'myworld',
-        headers: {
-            'Access-Control-Allow-Origin': '*'
-         },
+        body: 'world',
     })
     .then(response => { 
         return response.text();
@@ -47,35 +49,28 @@ function scrabbleValueCalculate(event) {
         console.log(data);
     })
 }
-
 document.getElementById("calculate").addEventListener('click', scrabbleValueCalculate, false);
 
 
+/* MOUSE OVER */
 let overDivs = document.getElementsByClassName('col-sm');
-console.log(overDivs);
 for(let overDiv of overDivs) {
     overDiv.addEventListener('mouseenter', function(event) {
         event.target.style.backgroundColor = "lightgreen";
         setTimeout(function () {
             event.target.style.backgroundColor = "";
-          }, 300);
+        }, 300);
     });
 }
 
 
+/* LISTE DES COURSES */
 document.getElementById('itemAdd').addEventListener('click', function(event) {
     event.preventDefault();
-    let newLi = document.createElement('li');
-    newLi.className = 'list-group-item';
-    newLi.textContent = document.getElementById('item').value;
-    let ul = document.getElementById('items');
-    ul.append(newLi);
+    let newItem = document.createElement('li');
+    newItem.className = 'list-group-item';
+    newItem.textContent = document.getElementById('item').value;
+    let myList = document.getElementById('myList');
+    myList.append(newItem);
     document.getElementById('item').value ="";
-
-
-    let items = document.getElementsByClassName('list-group-item');
-    for(let item of items) {
-       
-
-};
 })
