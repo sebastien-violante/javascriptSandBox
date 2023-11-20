@@ -10,6 +10,17 @@ body {
     border: 1px solid rgb(138, 180, 24)
 }
 
+.blinkColor {
+    background-color: yellow;
+}
+
+.circle {
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    border: 1px solid rgb(241, 237, 237);
+}
+
 .divResult {
     width: 400px;
     height: 100px;

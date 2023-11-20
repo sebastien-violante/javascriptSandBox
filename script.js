@@ -74,3 +74,64 @@ document.getElementById('itemAdd').addEventListener('click', function(event) {
     myList.append(newItem);
     document.getElementById('item').value ="";
 })
+
+setInterval(() => {
+    document.querySelector('#blinkCircle').classList.toggle('blinkColor');
+}, 300);
+
+/* DANS LE BON ORDRE */
+
+const firstStory = [
+    'Jeannot Lapin se lève...',
+    'il boit son bol de carottes...',
+    'et s\'habille à toute vitesse..',
+    'puis part travailler.'
+]
+const secondStory = [
+    'Le chat de la mère Michelle...',
+    'se sauve de la maison...',
+    'et s\'habille à toute vitesse..',
+    'puis part travailler.'
+];
+const thirdStory = [
+    'Le père Noêl se réveille...',
+    'et s\aperçoit qu\'il a oublié...',
+    'de distribuer les cadeaux aux enfants..',
+    'alors il s\'habille très vite et part.'
+];
+
+  
+
+function addLis() {
+    /* determine a random display sequence */
+    const answers = [1,2,3,4];
+    let sequence = [];
+    while(answers.length > 0) {
+        let rand = Math.random() * answers.length | 0;
+        let randomValue = answers[rand];
+        sequence.push(randomValue);
+        answers.splice(rand, 1);
+    }
+    console.log('tableau de sequence: '+sequence);
+
+    /* Determine the array choosen by random */
+    let targetArrayNumber = Math.floor(Math.random() *3)+1;
+    console.log('numero de tableau: '+targetArrayNumber);
+    let targetArray = null;
+    switch(targetArrayNumber) {
+        case 1:
+            targetArray = firstStory;
+            break;
+        case 2:
+            targetArray = secondStory;
+            break;    
+        default :
+            targetArray = thirdStory;
+            break;    
+    }
+    
+    /* display the sentences according to the random sequence */
+
+}
+document.querySelector('#storyGenerate').addEventListener('click', addLis());
+addLis();
