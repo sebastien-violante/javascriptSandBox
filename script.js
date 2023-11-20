@@ -100,11 +100,27 @@ const thirdStory = [
     'alors il s\'habille très vite et part.'
 ];
 
-  
+function move() {
+    let sentences = document.querySelectorAll('ul li');
+    for(let sentence of sentences) {
+        sentence.addEventListener('click', function() {
+            sentence.style.backgroundColor = 'lightgreen';
+            let directions = document.querySelectorAll('.directionButtons button');
+            for(let direction of directions) {
+                direction.addEventListener('click', function(event) {
+                    if(event.target.id === "up") {
+
+                    } else {
+                        
+                    };
+            })}
+        })
+    }
+}
 
 function addLis() {
     /* determine a random display sequence */
-    const answers = [1,2,3,4];
+    const answers = [0,1,2,3];
     let sequence = [];
     while(answers.length > 0) {
         let rand = Math.random() * answers.length | 0;
@@ -129,9 +145,19 @@ function addLis() {
             targetArray = thirdStory;
             break;    
     }
-    
     /* display the sentences according to the random sequence */
-
+    let story = document.querySelector('#story');
+    sequence.forEach(function(item) {
+        let newLi = document.createElement('li');
+        newLi.className = 'list-group-item';
+        newLi.textContent = targetArray[item];
+        story.append(newLi);
+    });
+    move();
+    
 }
-document.querySelector('#storyGenerate').addEventListener('click', addLis());
-addLis();
+    
+    document.querySelector('#storyGenerate').addEventListener('click', function(event) {
+    event.preventDefault();
+    addLis();
+});
