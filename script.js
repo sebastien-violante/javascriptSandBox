@@ -82,41 +82,52 @@ setInterval(() => {
 /* DANS LE BON ORDRE */
 
 const firstStory = [
-    'Jeannot Lapin se lève...',
-    'il boit son bol de carottes...',
-    'et s\'habille à toute vitesse..',
+    'Jeannot Lapin se lève,',
+    'il boit son bol de carottes,',
+    'et s\'habille à toute vitesse,',
     'puis part travailler.'
 ]
 const secondStory = [
-    'Le chat de la mère Michelle...',
-    'se sauve de la maison...',
-    'et s\'habille à toute vitesse..',
+    'Le chat de la mère Michelle,',
+    'se sauve de la maison,',
+    'et s\'habille à toute vitesse,',
     'puis part travailler.'
 ];
 const thirdStory = [
-    'Le père Noêl se réveille...',
-    'et s\aperçoit qu\'il a oublié...',
-    'de distribuer les cadeaux aux enfants..',
+    'Le père Noêl se réveille,',
+    'et s\'aperçoit qu\'il a oublié,',
+    'de distribuer les cadeaux aux enfants,',
     'alors il s\'habille très vite et part.'
 ];
 
+
 function move() {
+    /* targeting the sentence container*/    
+    let story = document.querySelector('#story');
+    /* targeting the list of sentences */
     let sentences = document.querySelectorAll('ul li');
+    /* looping on sentences to listen to click event */
     for(let sentence of sentences) {
         sentence.addEventListener('click', function() {
+            /* change the sentence color to highlight it */
             sentence.style.backgroundColor = 'lightgreen';
+            /* targeting the action buttons */
             let directions = document.querySelectorAll('.directionButtons button');
+            /* looping on buttons to listen to click event */
             for(let direction of directions) {
                 direction.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    /* moving the sentence in a direction depending on clicked button */
                     if(event.target.id === "up") {
-
+                        story.insertBefore(sentence, sentence.previousSibling);
                     } else {
-                        
-                    };
-            })}
-        })
-    }
-}
+                        story.insertBefore(sentence.nextSibling, sentence);
+                    }
+                        });
+                }
+            });
+        };
+    }        
 
 function addLis() {
     /* determine a random display sequence */
@@ -153,11 +164,10 @@ function addLis() {
         newLi.textContent = targetArray[item];
         story.append(newLi);
     });
-    move();
-    
+    move();   
 }
     
-    document.querySelector('#storyGenerate').addEventListener('click', function(event) {
+document.querySelector('#storyGenerate').addEventListener('click', function(event) {
     event.preventDefault();
     addLis();
 });
