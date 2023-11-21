@@ -75,17 +75,25 @@
         <h2 class="text-center">Dans le bon ordre</h2>
         <p class="text-center">Mettre des morceaux d'histoire dans le bon ordre</p>
         <div class="flex">
-            <p>Cliquez sur le bouton pour voir apparaître les morceaux d'histoire. <br/>Ensuite cliquer sur une partie de phrase puis cliquez sur une flèche pour la faire monter ou descendre.<br/>Pensez à valider pour vérifier le résultat !</p>
-            <button id="storyGenerate" class="btn btn-primary">Faire apparaître l'histoire</button>
-            <button class="btn btn-primary">Vérifier</button>       
+            <p>Cliquez sur le bouton pour voir apparaître les morceaux d'histoire. <br/>Ensuite cliquez sur une partie de phrase puis cliquez sur "ajouter" ou "enlever" pour modifier votre réponse.<br/>Pensez à valider pour vérifier le résultat !</p>
+            <button id="storyGenerate" class="btn btn-primary position-relative">Faire apparaître l'histoire
+                <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">1</span>
+            </button>
+            <button class="btn btn-primary position-relative">Vérifier
+                <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">3</span>
+            </button>       
         </div>
         <div class="flex w-50 m-auto">
             <div class="windowStory" id="before">
                 <ul id="beforeStory"></ul>
             </div>
             <div class="windowStory" id="directionButtons">
-                <button id="right" class="btn btn-secondary">Ajouter</button>                   
-                <button id="left" class="btn btn-secondary">Enlever</button>
+                <button id="right" class="btn btn-secondary position-relative">Ajouter
+                    <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">2</span>      
+                </button>                   
+                <button id="left" class="btn btn-secondary position-relative">Enlever
+                    <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">2</span>
+                </button>
             </div>
             <div class="windowStory" id="after">
                 <ul id="afterStory"></ul>
