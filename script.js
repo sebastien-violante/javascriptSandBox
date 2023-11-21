@@ -90,8 +90,8 @@ const firstStory = [
 const secondStory = [
     'Le chat de la mère Michelle,',
     'se sauve de la maison,',
-    'et s\'habille à toute vitesse,',
-    'puis part travailler.'
+    'puis le père Lustrucru le retrouve,',
+    'et le ramène à sa propriétaire.'
 ];
 const thirdStory = [
     'Le père Noêl se réveille,',
@@ -100,34 +100,51 @@ const thirdStory = [
     'alors il s\'habille très vite et part.'
 ];
 
-
 function move() {
-    /* targeting the sentence container*/    
-    let story = document.querySelector('#story');
-    /* targeting the list of sentences */
-    let sentences = document.querySelectorAll('ul li');
+    /* targeting the sentence containers*/    
+    let beforeStory = document.querySelector('#beforStory');
+    let afterStory = document.querySelector('#afterStory');
+    /* targeting the lists of sentences */
+    let beforeSentences = document.querySelectorAll('#beforeStory li');
+    let afterSentences = document.querySelectorAll('#afterStory li');
     /* looping on sentences to listen to click event */
-    for(let sentence of sentences) {
-        sentence.addEventListener('click', function() {
+    for(let beforeSentence of beforeSentences) {
+        beforeSentence.addEventListener('click', function() {
             /* change the sentence color to highlight it */
-            sentence.style.backgroundColor = 'lightgreen';
+            beforeSentence.style.backgroundColor = 'lightgreen';
             /* targeting the action buttons */
-            let directions = document.querySelectorAll('.directionButtons button');
-            /* looping on buttons to listen to click event */
-            for(let direction of directions) {
-                direction.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    /* moving the sentence in a direction depending on clicked button */
-                    if(event.target.id === "up") {
-                        story.insertBefore(sentence, sentence.previousSibling);
-                    } else {
-                        story.insertBefore(sentence.nextSibling, sentence);
-                    }
-                        });
-                }
+            let right = document.querySelector('#right');
+            right.addEventListener('click', function(event) {
+                event.preventDefault();
+                /* moving the sentence in a direction depending on clicked button */
+                afterStory.appendChild(beforeSentence);
             });
-        };
-    }        
+            let observer = new MutationObserver(mutationRecords => {
+                console.log('changements: '+mutationRecords); // console.log(les changements)
+            });
+            observer.observe(elem, {
+                childList: true, // observer les enfants directs
+                subtree: true, // et les descendants aussi
+                characterDataOldValue: true // transmettre les anciennes données au callback
+              });
+        });
+    };
+
+    for(let afterSentence of afterSentences) {
+        afterSentence.addEventListener('click', function() {
+            /* change the sentence color to highlight it */
+            afterSentence.style.backgroundColor = 'lightred';
+            /* targeting the action buttons */
+            let left = document.querySelector('#left');
+            left.addEventListener('click', function(event) {
+                event.preventDefault();
+                /* moving the sentence in a direction depending on clicked button */
+                beforeStory.appendChild(afterSentence);
+            });
+        });
+        location.reload();
+    };
+}        
 
 function addLis() {
     /* determine a random display sequence */
@@ -156,8 +173,9 @@ function addLis() {
             targetArray = thirdStory;
             break;    
     }
+
     /* display the sentences according to the random sequence */
-    let story = document.querySelector('#story');
+    let story = document.querySelector('#beforeStory');
     sequence.forEach(function(item) {
         let newLi = document.createElement('li');
         newLi.className = 'list-group-item';

@@ -36,3 +36,10 @@ body {
     justify-content:center;
     gap: 2em;
 }
+
+.windowStory {
+    margin-top: 3em;
+    height: 20em;
+    width: 30%;
+    text-align: center;
+}

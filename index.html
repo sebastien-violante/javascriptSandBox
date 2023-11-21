@@ -79,14 +79,19 @@
             <button id="storyGenerate" class="btn btn-primary">Faire apparaître l'histoire</button>
             <button class="btn btn-primary">Vérifier</button>       
         </div>
-        <div class="flex my-2">
-            <ul id="story"></ul>
-            <div class="directionButtons">
-                <button id="up" class="btn btn-secondary">Monter</button>                   
-                <button id="down" class="btn btn-secondary">Descendre</button>
+        <div class="flex w-50 m-auto">
+            <div class="windowStory" id="before">
+                <ul id="beforeStory"></ul>
             </div>
+            <div class="windowStory" id="directionButtons">
+                <button id="right" class="btn btn-secondary">Ajouter</button>                   
+                <button id="left" class="btn btn-secondary">Enlever</button>
+            </div>
+            <div class="windowStory" id="after">
+                <ul id="afterStory"></ul>
+            </div>
+            
         </div>               
-         
     </div>
     </div>
 
