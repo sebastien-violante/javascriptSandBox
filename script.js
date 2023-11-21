@@ -100,13 +100,23 @@ const thirdStory = [
     'alors il s\'habille très vite et part.'
 ];
 
-function move() {
-    /* targeting the sentence containers*/    
-    let beforeStory = document.querySelector('#beforStory');
-    let afterStory = document.querySelector('#afterStory');
+function remove() {
+    let afterSentences = document.querySelectorAll('#afterStory li');
+    for(let afterSentence of afterSentences){
+        afterSentence.addEventListener('click', function() {
+            let left = document.querySelector('#left');
+            left.addEventListener('click', function(event) {
+                event.preventDefault();
+                /* moving the sentence in a direction depending on clicked button */
+                beforeStory.appendChild(afterSentence);
+                afterSentence.style.backgroundColor='white';
+            });
+        });
+    }
+}
+function move() {    
     /* targeting the lists of sentences */
     let beforeSentences = document.querySelectorAll('#beforeStory li');
-    let afterSentences = document.querySelectorAll('#afterStory li');
     /* looping on sentences to listen to click event */
     for(let beforeSentence of beforeSentences) {
         beforeSentence.addEventListener('click', function() {
@@ -118,32 +128,13 @@ function move() {
                 event.preventDefault();
                 /* moving the sentence in a direction depending on clicked button */
                 afterStory.appendChild(beforeSentence);
+                remove();
             });
-            let observer = new MutationObserver(mutationRecords => {
-                console.log('changements: '+mutationRecords); // console.log(les changements)
-            });
-            observer.observe(elem, {
-                childList: true, // observer les enfants directs
-                subtree: true, // et les descendants aussi
-                characterDataOldValue: true // transmettre les anciennes données au callback
-              });
-        });
+           
+        }); 
     };
 
-    for(let afterSentence of afterSentences) {
-        afterSentence.addEventListener('click', function() {
-            /* change the sentence color to highlight it */
-            afterSentence.style.backgroundColor = 'lightred';
-            /* targeting the action buttons */
-            let left = document.querySelector('#left');
-            left.addEventListener('click', function(event) {
-                event.preventDefault();
-                /* moving the sentence in a direction depending on clicked button */
-                beforeStory.appendChild(afterSentence);
-            });
-        });
-        location.reload();
-    };
+    
 }        
 
 function addLis() {
@@ -182,10 +173,12 @@ function addLis() {
         newLi.textContent = targetArray[item];
         story.append(newLi);
     });
-    move();   
+      
+   
 }
     
 document.querySelector('#storyGenerate').addEventListener('click', function(event) {
     event.preventDefault();
     addLis();
+    move();
 });
