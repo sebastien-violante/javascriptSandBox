@@ -1,110 +1,21 @@
-<html lang="fr">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requête AJAX xmlHttpRequest et Fetch</title>
     <link href="https://fonts.cdnfonts.com/css/didact-gothic" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <title>Home du JS Sandbox</title>
 </head>
-
 <body>
-    <div class="py-3">
-        <h1 class="mb-5 text-center">Des requêtes AJAX</h1>
-        <hr>
-        <div class="flex">
-            <div id="blinkCircle" class="blinkColor circle"></div>
-            <h2 class="text-center">Méthode GET</h2>
-        </div>
-        
-        <p class="text-center">Les deux requêtes ci-dessous récupèrent le contenu du fichier texte.txt et l'affichent dans la zone encadrée</p>
-        <div class="flex">
-            <div class="m-3">
-                <h3>Requête xmlHttpRequest</h3>
-                <button id="xmlLoadData" class="btn btn-primary">Charger les données</button>
-                <div id="xmlResult" class="divResult"></div>
-            </div>
-            <div class="m-3">
-                <h3>Requête fetch</h3>
-                <button id="fetchLoadData" class="btn btn-primary">Charger les données</button>
-                <div id="fetchResult" class="divResult"></div>
-            </div>
-        </div>
-        <hr>
-        <h2 class="text-center">Méthode POST</h2>
-        <p class="text-center">La requête récupère le mot saisi dans le formulaire et détermine sa valeur au Scrabble (sans cases particulières)</p>
-        <div class="flex m-3"></div>
-        <form id="form" class="flex" method="POST" action="controler.php">
-            <label for="wordInput">Saisissez un mot :</label>
-            <input type="text" id="wordInput" name="wordInput" />
-            <input type="submit" id="calculate" value="Calculer" class="btn btn-primary">
-        </form>
-        <div id="scrabbleValue" class="divResult"></div>
-        <hr>
-        <h2 class="text-center">Mouse over</h2>
-        <p class="text-center">Changement de style (couleur) au passage de la souris et réinitialisation</p>
-        <div class="row w-50 m-auto h-25">
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-            <div class="col-sm border"></div>
-        </div>
-        <hr>
-        <h2 class="text-center">Ma liste de courses</h2>
-        <p class="text-center">Ajout d'éléments dans une liste</p>
-        <div class="flex">
-            <form id="itemsList">
-                <label for="item">Saisir un article</label>
-                <input type="text" name="item" id="item">
-                <input type="submit" value="Ajouter" class="btn btn-success" id="itemAdd">
-            </form>
-            <div>
-                <h4>Ma liste de courses :</h4>
-                <div id="myList">
-                </div>
-            </div>
-        </div>
-        <hr>
-        <h2 class="text-center">Dans le bon ordre</h2>
-        <p class="text-center">Mettre des morceaux d'histoire dans le bon ordre</p>
-        <div class="flex">
-            <p>Cliquez sur le bouton pour voir apparaître les morceaux d'histoire. <br/>Ensuite cliquez sur une partie de phrase puis cliquez sur "ajouter" ou "enlever" pour modifier votre réponse.<br/>Pensez à valider pour vérifier le résultat !</p>
-            <button id="storyGenerate" class="btn btn-primary position-relative">Faire apparaître l'histoire
-                <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">1</span>
-            </button>
-            <button class="btn btn-primary position-relative">Vérifier
-                <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">3</span>
-            </button>       
-        </div>
-        <div class="flex w-50 m-auto">
-            <div class="windowStory" id="before">
-                <ul id="beforeStory"></ul>
-            </div>
-            <div class="windowStory" id="directionButtons">
-                <button id="right" class="btn btn-secondary position-relative">Ajouter
-                    <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">2</span>      
-                </button>                   
-                <button id="left" class="btn btn-secondary position-relative">Enlever
-                    <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">2</span>
-                </button>
-            </div>
-            <div class="windowStory" id="after">
-                <ul id="afterStory"></ul>
-            </div>
-            
-        </div>               
+    <div class="text-center">
+        <h1>Bienvenue dans mon JS Sandbox</h1>
+        <p>Choisissez une catégorie pour être redirigé(e) sur la page correspondante</p>    
     </div>
+    <div class="flex">
+        <a href="domManipulations.html"><button class="btn btn-success">Manipulations du DOM</button></a>
+        <a href="classes.html"><button class="btn btn-success">Classes js</button></a>
     </div>
-
-    <script src="script.js" defer></script>
-
 </body>
-
 </html>

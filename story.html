@@ -1,0 +1,189 @@
+<html>
+<style>
+.overed{
+	background : green;
+	color : white;
+}
+</style>
+<body>
+<div>
+<h2 class="text-center">Dans le bon ordre</h2>
+        <p class="text-center">Mettre des morceaux d'histoire dans le bon ordre</p>
+        <div class="flex">
+            <p>Cliquez sur le bouton pour voir apparaître les morceaux d'histoire. <br/>Ensuite cliquez sur une partie de phrase puis cliquez sur "ajouter" ou "enlever" pour modifier votre réponse.<br/>Pensez à valider pour vérifier le résultat !</p>
+            <button id="btGenerer" class="btn btn-primary position-relative">Faire apparaître l'histoire
+                <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">1</span>
+            </button>
+            <button id='btVerifier' class="btn btn-primary position-relative">Vérifier
+                <span class="position-absolute top-0 start-0 badge rounded-pill bg-warning">3</span>
+            </button>       
+        </div>
+        <div id='storyInterface' class="flex w-50 m-auto">
+            <div class="windowStory" id="before">
+				Cliquez sur les parties d'histoire pour les sélectionner :
+                <ul id="beforeStory"></ul>
+            </div>
+            <div class="windowStory" id="after">
+				Votre r&eacute;ponse :
+                <ul id="afterStory"></ul>
+            </div>
+            
+        </div>               
+	</div>
+<script>
+
+const firstStory = [
+    'Jeannot Lapin se lève,',
+    'il boit son bol de carottes,',
+    'et s\'habille à toute vitesse,',
+    'puis part travailler.'
+]
+const secondStory = [
+    'Le chat de la mère Michelle,',
+    'se sauve de la maison,',
+    'puis le père Lustrucru le retrouve,',
+    'et le ramène à sa propriétaire.'
+];
+const thirdStory = [
+    'Le père Noêl se réveille,',
+    'et s\'aperçoit qu\'il a oublié,',
+    'de distribuer les cadeaux aux enfants,',
+    'alors il s\'habille très vite et part.'
+];
+
+
+class StoryManager{
+	
+	story = []
+	mixedStory = []
+	
+	storyManagerInterface = {
+	
+		storyManager : this
+		
+		,init : function(){
+		
+			this.btGenerer = document.querySelector('#btGenerer')
+			this.btVerifier = document.querySelector('#btVerifier')
+			this.before = document.querySelector('#before')
+			this.after = document.querySelector('#after')
+			this.beforeStory = document.querySelector('#beforeStory')
+			this.afterStory = document.querySelector('#afterStory')
+			
+			this.before.style.display = "none"
+			this.after.style.display = "none"
+			
+			this.btGenerer.addEventListener('click',()=>{
+				this.storyManager.startGame()
+			})
+			
+			this.btVerifier.addEventListener('click',()=>{
+				this.storyManager.verifyAnswer()
+			})
+			
+		}
+		
+		,clear : function(){
+		
+			this.beforeStory.innerHTML = ""
+			this.afterStory.innerHTML = ""
+		
+		}
+		
+		,start : function(story){
+
+			this.clear()
+
+			story.map((partStory)=>{
+				
+				const li = document.createElement('li')
+				li.innerHTML = partStory
+				li.addEventListener('mouseover',function(){
+					this.classList.add('overed')
+				})
+				li.addEventListener('mouseout',function(){
+					this.classList.remove('overed')
+				})
+				li.storyManagerInterface = this
+				li.addEventListener('click',function(){
+					this.storyManagerInterface.movePartStory(this)
+				})
+				this.beforeStory.append(li)
+				
+			})
+			
+			this.before.style.display = "block"
+			this.after.style.display = "block"
+		
+		}
+		
+		,movePartStory : function(li){
+		
+			if(li.parentNode == this.beforeStory){
+				this.afterStory.appendChild(li)
+			}
+			else{
+				this.beforeStory.appendChild(li)
+			}
+		
+		}
+		
+		,getAnswer : function(){
+
+			const storyAnswer = []
+			;[...this.afterStory.childNodes].map((li)=>{
+				storyAnswer.push(li.innerText)
+			})
+			
+			return storyAnswer
+			
+		}
+		
+	}
+	
+	constructor(story){
+	
+		this.story = story
+		this.storyManagerInterface.init()
+		
+	}
+	
+	mixStory(){
+	
+		this.mixedStory = [...this.story]
+		for(let idIteration=10;idIteration--;){
+			const newPos = Math.round(Math.random()*this.mixedStory.length-1)
+			this.mixedStory.push(this.mixedStory.splice(newPos,1).shift())
+		}
+
+		return this.mixedStory
+	
+	}
+	
+	startGame(){
+
+		this.storyManagerInterface.start(this.mixStory())
+		
+	}
+	
+	verifyAnswer(){
+
+		const answer = this.storyManagerInterface.getAnswer()
+
+		if(JSON.stringify(answer) === JSON.stringify(this.story)){
+			console.log('Bonne réponse!')
+		}
+		else{
+			console.log('Mauvaise réponse.')
+		}
+		
+	}
+	
+}
+
+
+new StoryManager(firstStory)
+
+</script>
+</body>
+</html>
