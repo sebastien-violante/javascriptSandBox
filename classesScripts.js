@@ -23,3 +23,7 @@ let divide = (a,b) => {
 
 console.log(divide(2,3));
 console.log(divide(2,0));
+
+let toto = 5;
+
+console.log(toto.Number.isNaN());
