@@ -30,3 +30,6 @@ const game = () => {
 }
 
 game();
+const restartGame = () => {
+    let answer = prompt('Do you want to replay ?');
+}
